@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load static %}    
+{% block page_head %}
+Get in touch
+{% endblock page_head %}
+{% block content %}
+    
+    <section id="content">
+      <iframe src="https://maps.google.com/maps?width=100%&height=600&hl=en&q=Banaja%20hill%2C%20Road%20no%2012%2CHyderabad%2C%20Telangana%2C%20India+(Tech-amare)&ie=UTF8&t=&z=14&iwloc=B&output=embed" width="100%" height="380" frameborder="0" style="border:0" allowfullscreen></iframe>
+      <div class="container">
+        <div class="row">
+          <div class="span12">
+            <h4>Get in touch with us by filling <strong>contact form below</strong></h4>
+
+<form method="POST">
+<div id="sendmessage">Your message has been sent. Thank you!</div>
+              <div id="errormessage"></div>
+{% csrf_token %}
+<div class="row">
+<div class="span4 form-group"><label for="id_full_name">Full name:</label> 
+<input type="text" name="full_name" maxlength="50" value={{user.username}} required id="id_full_name" readonly>
+<div class="validation"></div>
+</div>
+<div class="span4 form-group">
+<label for="id_email">Email:</label> 
+<input type="email" name="email" maxlength="254" required id="id_email" value={{user.email}} readonly>
+<div class="validation"></div>
+</div>
+<div class="span4 form-group">
+<label for="id_subject">Subject:</label>
+<input type="text" name="subject" maxlength="50" required id="id_subject">
+<div class="validation"></div>
+</div>
+
+<div class="span12 form-group">
+  <label for="id_message">Message:</label> 
+    <textarea  name="message" rows="12" maxlength="400"  required id="id_message">
+    </textarea>
+    <div class="validation"></div>
+</div>
+
+<p>
+<button class="btn btn-large btn-theme margintop10" type="submit"  >Submit Message</button>
+</p>
+ </div>
+ </div>
+</form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+{% endblock content %}
+
+
+  <!-- javascript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src=" {% static 'js/jquery.js' %} "></script>
+  <script src=" {% static 'js/jquery.easing.1.3.js' %} "></script>
+  <script src=" {% static 'js/bootstrap.js' %} "></script>
+  <script src=" {% static 'js/jcarousel/jquery.jcarousel.min.js' %} "></script>
+  <script src=" {% static 'js/jquery.fancybox.pack.js' %} "></script>
+  <script src=" {% static 'js/jquery.fancybox-media.js' %} "></script>
+  <script src=" {% static 'js/google-code-prettify/prettify.js' %} "></script>
+  <script src=" {% static 'js/portfolio/jquery.quicksand.js' %} "></script>
+  <script src=" {% static 'js/portfolio/setting.js' %} "></script>
+  <script src=" {% static 'js/jquery.flexslider.js' %} "></script>
+  <script src=" {% static 'js/jquery.nivo.slider.js' %} "></script>
+  <script src=" {% static 'js/modernizr.custom.js' %} "></script>
+  <script src=" {% static 'js/jquery.ba-cond.min.js' %} "></script>
+  <script src=" {% static 'js/jquery.slitslider.js' %} "></script>
+  <script src=" {% static 'js/animate.js' %} "></script>
+
+  <!-- Contact Form JavaScript File -->
+  <script src=" {% static 'contactform/contactform.js' %} "></script>
+
+  <!-- Template Custom JavaScript File -->
+  <script src="js/custom.js"></script>
+{% block javascript %}
+
+{% endblock javascript %}

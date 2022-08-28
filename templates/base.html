@@ -1,0 +1,221 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Nation Builders </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <!-- css -->
+  <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,400italic,700|Open+Sans:300,400,600,700" rel="stylesheet">
+  <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" />
+  <link href=" {% static 'css/bootstrap-responsive.css' %} " rel="stylesheet" />
+  <link href=" {% static 'css/fancybox/jquery.fancybox.css' %} " rel="stylesheet">
+  <link href=" {% static 'css/jcarousel.css' %} " rel="stylesheet" />
+  <link href="{% static 'css/flexslider.css' %}" rel="stylesheet" />
+  <link href=" {% static 'css/style.css' %} " rel="stylesheet" />
+  <!-- Theme skin -->
+  <link href=" {% static 'skins/default1.css' %} " rel="stylesheet" />
+  <!-- boxed bg -->
+  <link id="bodybg" href=" {% static 'bodybg/bg1.css' %} " rel="stylesheet" type="text/css" />
+  <!-- Fav and touch icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href=" {% static 'ico/apps/favicon-c.png' %} " />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href=" {% static 'iico/apps/favicon-c.png' %} " />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href=" {% static 'ico/apps/favicon-c.png' %} " />
+  <link rel="apple-touch-icon-precomposed" href=" {% static 'ico/apps/favicon-c.png' %} " />
+  <link rel="shortcut icon" href=" {% static 'ico/apps/favicon-c.png' %} " />
+
+
+</head>
+
+
+<body>
+  <div id="wrapper">
+    <!-- toggle top area -->
+    <div class="hidden-top">
+      <div class="hidden-top-inner container">
+        <div class="row">
+          <div class="span12">
+          <center>
+            <ul>
+              <li><strong>Etihad Prime Technologies is available for any custom works.</strong></li>
+              <li>Main office: Banjara Hills, Road no 12, Hyderabad, Telangana</li><br/>
+              <li>Call us <i class="icon-phone"></i> (+91) 8142512619 - (+91) 9885873061</li>
+            </ul>
+          </center>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end toggle top area -->
+    <!-- start header -->
+    <header>
+      <div class="container ">
+        <!-- hidden top area toggle link -->
+        <div id="header-hidden-link">
+          <a href="#" class="toggle-link" title="Click me you'll get a surprise" data-target=".hidden-top"><i></i>Open</a>
+        </div>
+        <!-- end toggle link -->
+        <div class="row nomargin">
+          <div class="span12">
+            <div class="headnav">
+              <ul>
+                
+                {% if user.is_authenticated %}
+                <li  class="gcol"><a href="{% url 'my_profile' %}" data-toggle="modal"><i class="icon-user"></i> Profile</a></li>
+                <li><a href="{% url 'my_volunteer'  %}" > Volunteer </a> </li>
+                <li><a href="{% url 'my_member'  %}" > NGO Member </a> </li>
+                <li><a href=" {% url 'logout' %}" data-toggle="modal">Sign out</a></li>
+                {% else %}
+                <li><a href="{% url 'register'  %}" data-toggle="modal"><i class="icon-user"></i> Sign up</a></li>
+                <li><a href="{% url 'login'  %}" data-toggle="modal">Sign in</a></li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+        {% block navigation_bar %}
+        <div class="row">
+          <div class="span4">
+            <div class="logo">
+              <a href="{% url 'home' %}"><img src="{% static "img/apps/logo.jpg" %}" alt="" class="logo" /></a>
+              <br/><br/><br/><h1>Eradicating Child labor by provding education to child</h1>
+            </div>
+          </div>
+        
+        {% endblock navigation_bar  %}
+      </div>
+    </header>
+    <!-- end header -->
+    {% block nav_line %}
+    <section id="inner-headline">
+      <div class="container">
+        <div class="row">
+          <div class="span12">
+            <div class="inner-heading">
+              <h2> {% block page_head %}
+              Home 
+              {% endblock page_head %} 
+              <small class= "active" style="float:right" ><a href="{% url 'home' %}" ><i class="icon-home"></i>Home </a> &nbsp; <a href="{% url 'about' %}"> About us </a> &nbsp;
+              <a href="{% url 'comment-create' %}">  Contact  </a> {% if user.is_authenticated %} &nbsp; <a href="{% url 'ngo-list' %}"> NGO  </a> &nbsp;{% endif %}
+              </small>
+
+              </h2>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {% endblock nav_line %}
+
+{% block content %}
+
+{% endblock content %}
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="span4">
+            <div class="widget">
+              <h5 class="widgetheading">Browse pages</h5>
+              <ul class="link-list">
+                <li><a href="https://etihadprime.herokuapp.com">About our company</a></li>
+                <li><a href="https://etihadprime.herokuapp.com/about">Our services</a></li>
+                <li><a href=" {% url 'about' %}">Meet our team</a></li>
+                <li><a href="{% url 'comment-create' %}">Get in touch with us</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="span4">
+            <div class="widget">
+              <h5 class="widgetheading">Important stuff</h5>
+              <ul class="link-list">
+                <li><a href="#">Terms and conditions</a></li>
+                <li><a href="#">Privacy policy</a></li>
+                <li><a href="#">Career center</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="span4">
+            <div class="widget">
+              <h5 class="widgetheading">Get in touch with us</h5>
+              <address>
+								<strong>Etihad Prime Technologies</strong><br>
+								 Banjara Hills, Hyderabad<br>
+								 Telangana, India
+					 		</address>
+              <p>
+                <i class="icon-phone"></i> (+91) 81425 12619 - (+91) 98858 73061 <br>
+                <i class="icon-envelope-alt"></i> muqeetosama16@gmail.com
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="sub-footer">
+        <div class="container">
+          <div class="row">
+            <div class="span6">
+              <div class="copyright">
+                <p>
+                  <span>&copy; Etihad Prime Technologies - All right reserved.</span>
+                </p>
+                <div class="credits">
+                  <!--
+                    All the links in the footer should remain intact.
+                    You can delete the links only if you purchased the pro version.
+                    Licensing information: https://bootstrapmade.com/license/
+                    Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Flattern
+                  -->
+                  Designed by <a href="linkedin.com/in/abdulmuqeetosama">Abdul Muqeet Osama </a>
+                </div>
+              </div>
+            </div>
+            <div class="span6">
+              <ul class="social-network">
+                <li><a href="https://www.facebook.com/abdulmuqeet.osama" data-placement="bottom" title="Facebook"><i class="icon-facebook icon-square"></i></a></li>
+                <li><a href="https://twitter.com/Muqeet696" data-placement="bottom" title="Twitter"><i class="icon-twitter icon-square"></i></a></li>
+                <li><a href="https://linkedin.com/in/abdulmuqeetosama" data-placement="bottom" title="Linkedin"><i class="icon-linkedin icon-square"></i></a></li>
+                <li><a href="#" data-placement="bottom" title="Pinterest"><i class="icon-pinterest icon-square"></i></a></li>
+                <li><a href="#" data-placement="bottom" title="Google plus"><i class="icon-google-plus icon-square"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <a href="#" class="scrollup"><i class="icon-chevron-up icon-square icon-32 active"></i></a>
+{% block javascript %}
+  <!-- javascript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src=" {% static 'js/jquery.js' %} "></script>
+  <script src=" {% static 'js/jquery.easing.1.3.js' %} "></script>
+  <script src=" {% static 'js/bootstrap.js' %} "></script>
+  <script src=" {% static 'js/jcarousel/jquery.jcarousel.min.js' %} "></script>
+  <script src=" {% static 'js/jquery.fancybox.pack.js' %} "></script>
+  <script src=" {% static 'js/jquery.fancybox-media.js' %} "></script>
+  <script src=" {% static 'js/google-code-prettify/prettify.js' %} "></script>
+  <script src=" {% static 'js/portfolio/jquery.quicksand.js' %} "></script>
+  <script src=" {% static 'js/portfolio/setting.js' %} "></script>
+  <script src=" {% static 'js/jquery.flexslider.js' %} "></script>
+  <script src=" {% static 'js/jquery.nivo.slider.js' %}"></script>
+  <script src=" {% static 'js/modernizr.custom.js' %}"></script>
+  <script src=" {% static 'js/jquery.ba-cond.min.js' %} "></script>
+  <script src=" {% static 'js/jquery.slitslider.js' %} "></script>
+  <script src=" {% static 'js/animate.js' %}"></script>
+
+  <!-- Template Custom JavaScript File -->
+  <script src=" {% static 'js/custom.js' %} "></script>
+
+
+
+{% endblock javascript %}
+
+</body>
+</html>

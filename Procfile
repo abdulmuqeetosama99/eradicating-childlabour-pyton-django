@@ -1,0 +1,1 @@
+web: gunicorn nation_builder.wsgi

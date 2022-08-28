@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block page_head %}
+User Profile
+{% endblock page_head %}
+
+{% block content %}
+<div class="container">
+
+<section class="section section-stats">
+<div class="card-panel" >
+<!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+{{form.as_p}}
+<button class="btn btn-large btn-theme margintop10" type="submit"  >Upload</button>
+</form>
+</div>
+
+</section>
+</div>
+
+{% endblock content %}
+{% block javascript %}
+{% endblock %}

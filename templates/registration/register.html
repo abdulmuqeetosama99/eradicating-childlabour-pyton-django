@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+
+<div class="container">
+
+<section class="section section-stats">
+<div class="card-panel" >
+
+<h1> Registeration</h1>
+<form method="POST">
+{% csrf_token %}
+{{form.as_p}}
+<button class="btn btn-large btn-theme margintop10" type="submit"  >Register</button>
+</form>
+</div>
+
+</section>
+</div>
+
+{% endblock content %}
+{% block javascript %}
+{% endblock javascript %}

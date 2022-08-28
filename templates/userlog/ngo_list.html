@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_head %}
+NGO's
+{% endblock page_head %}
+
+{% block content %}
+<div class="container">
+
+<section class="section section-stats">
+<div class="card-panel" >
+<!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+{% for ngo in ngos %}
+    <h4>{{ngo.name|title}} <small> by {{ngo.manager_name|title}}</small></h4>
+        <!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+    <strong>Address : </strong> {{ngo.address|title}}, {{ngo.city|title}}, {{ngo.state|title}}
+    <br/>
+    <strong>Email : </strong> {{ngo.email}}
+    <br/>
+  {% if user.is_staff or ngo.username == user.username  %}
+      <a class="btn btn-large btn-theme margintop10" href = "{% url 'ngo-delete' ngo.name%}"  > Delete </a>
+  {% endif %}
+    <br/>
+    <br/>
+        <!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+{% endfor %}
+{% if ngos is None %}
+    <br/>
+    No NGO's Registered.
+        <!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+{% endif %}
+</div>
+
+</section>
+</div>
+
+{% endblock content %}

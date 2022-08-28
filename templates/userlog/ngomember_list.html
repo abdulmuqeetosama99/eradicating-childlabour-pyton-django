@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+NGO Members
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+
+<section class="section section-stats">
+<div class="card-panel" >
+<!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+{% for ngomember in ngomembers %}
+<h4>{{ngomember.username|title}} <small> from {{ngomember.ngo_name|title}}</small></h4>
+        <!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+<strong>Full Name : </strong> {{ngomember.first_name|title}} {{ngomember.last_name|title}}  
+<br/>
+<strong> Email : </strong> {{ngomember.email}}
+<br/>
+<strong> Designation : </strong> {{ngomember.designation}}
+<br/>
+{% for ngo in ngos %}
+{% if ngomember.username == ngo.manager_name and ngomember.ngo_name == ngo.name%}
+ <a class="btn btn-large btn-theme margintop10" href = "{% url 'ngo-member-delete' ngomember.username%}"  > Delete </a>
+ <a class="btn btn-large btn-theme margintop10" href = "{% url 'ngo-member-verify' ngomember.username%}"  > Verify </a>
+{% endif %}
+{% endfor %}
+{% if user.is_staff or ngomember.username == user.username  %}
+ <a class="btn btn-large btn-theme margintop10" href = "{% url 'ngomember-delete' ngomember.username%}"  > Delete </a>
+{% endif %}
+<br/>
+<br/>
+<a class="btn btn-large btn-theme margintop10" href = "{% url 'home' %}"  > Back </a>
+        <!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+
+
+{% endfor %}
+</div>
+
+</section>
+</div>
+
+{% endblock content %}

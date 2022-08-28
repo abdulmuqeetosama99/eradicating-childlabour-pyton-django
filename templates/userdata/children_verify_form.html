@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load static %}    
+{% block page_head %}
+Children Details Verify
+{% endblock page_head %}
+{% block content %}
+<div class="container">
+
+<section class="section section-stats">
+<div class="card-panel" >
+<h6> Note: <small> Children Details will be verified by Voulnteers only. </small> </h6>
+<!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->            
+<h4>{{children.full_name|title}} <small> by {{children.username|title}}</small></h4>
+        <!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+<strong>Full Name : </strong> {{children.full_name|title}} 
+<br/>
+<strong>Gender : </strong> {{children.gender}}
+<br/>
+<strong>Age: </strong> {{children.age}}
+<br/>
+<strong>Address : </strong> {{children.address}}, {{children.city|title}}, {{children.state|title}}
+<br/>
+<strong>Message : </strong> {{children.message|title}}
+<br/>
+<strong>Submited on  : </strong>{{children.submit_on}} by {{children.username}}
+<br/>
+<strong> Verified  : </strong>{{children.verified}}
+<br/>
+<!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider --> 
+{% if userprofile.is_volunteer %}
+<form method="POST">
+{% csrf_token %}
+{{form.as_p}}
+<p>
+<button class="btn btn-large btn-theme margintop10" type="submit"  >Submit</button>
+{% else %}
+<p>
+Only Voulnteers can Verify.
+<br/> 
+{% endif %}           
+<a class="btn btn-large btn-theme margintop10" href = "{% url 'home' %}" > Back </a>
+</p>
+</form>
+        <!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+        </div>
+
+</section>
+</div>
+{% endblock content %}
+
+
+  <!-- javascript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src=" {% static 'js/jquery.js' %} "></script>
+  <script src=" {% static 'js/jquery.easing.1.3.js' %} "></script>
+  <script src=" {% static 'js/bootstrap.js' %} "></script>
+  <script src=" {% static 'js/jcarousel/jquery.jcarousel.min.js' %} "></script>
+  <script src=" {% static 'js/jquery.fancybox.pack.js' %} "></script>
+  <script src=" {% static 'js/jquery.fancybox-media.js' %} "></script>
+  <script src=" {% static 'js/google-code-prettify/prettify.js' %} "></script>
+  <script src=" {% static 'js/portfolio/jquery.quicksand.js' %} "></script>
+  <script src=" {% static 'js/portfolio/setting.js' %} "></script>
+  <script src=" {% static 'js/jquery.flexslider.js' %} "></script>
+  <script src=" {% static 'js/jquery.nivo.slider.js' %} "></script>
+  <script src=" {% static 'js/modernizr.custom.js' %} "></script>
+  <script src=" {% static 'js/jquery.ba-cond.min.js' %} "></script>
+  <script src=" {% static 'js/jquery.slitslider.js' %} "></script>
+  <script src=" {% static 'js/animate.js' %} "></script>
+
+  <!-- Contact Form JavaScript File -->
+  <script src=" {% static 'contactform/contactform.js' %} "></script>
+
+  <!-- Template Custom JavaScript File -->
+  <script src="js/custom.js"></script>
+

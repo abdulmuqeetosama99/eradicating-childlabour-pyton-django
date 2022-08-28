@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+
+<div class="container">
+
+<section class="section section-stats">
+<div class="card-panel" >
+<h1> Login</h1>
+<form method="POST">
+{% csrf_token %}
+<label for="username" > User name </label>
+<input type="text" name="username"  value="" id="username"></input>
+<br/>
+<label for="password" > Password </label>
+<input type="password" name="password" value=""  id="password"></input>
+<br/>
+<button class="btn btn-large btn-theme margintop10" type="submit"  >login</button>
+<input type="hidden" name="next" value="{{next|escape}}"/>
+</form>
+</div>
+
+</section>
+</div>
+{% endblock content %}

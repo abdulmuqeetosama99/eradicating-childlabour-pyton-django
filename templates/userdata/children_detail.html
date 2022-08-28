@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_head %}
+
+Children Details
+{% endblock page_head %}
+
+{% block content %}
+<div class="container">
+
+<section class="section section-stats">
+<div class="card-panel" >
+<!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+
+<div class="container">
+<img class="img-circle" src="{% get_media_prefix %}image/avatar.png" width ="80" height="80"/>
+<div class="content"><small><a  href = "{% url 'children-image' children.id %}"  >change</a></small></div>
+<h2>Children<a class="btn btn-large btn-theme margintop10" href = "{% url 'children-create' %}" style="float:right"  >Add child details </a></h2>
+        <!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+{% if user.is_staff or children.user_name == user.username  %}
+<strong>Full Name : </strong> {{children.full_name|title}} 
+<br/>
+<strong>Gender : </strong> {{children.gender}}
+<br/>
+<strong>Age: </strong> {{children.age}}
+<br/>
+<strong>Address : </strong> {{children.address}}, {{children.city|title}}, {{children.state|title}}
+<br/>
+<strong>Message : </strong> {{children.message|title}}
+<br/>
+<strong>Submited on  : </strong>{{children.submit_on}} by {{children.username}}
+<br/>
+<a class="btn btn-large btn-theme margintop10" href = "{% url 'children-update' children.id %}"  >Edit children </a>
+<a class="btn btn-large btn-theme margintop10" href = "{% url 'children-delete' children.id %}"  > Delete </a>
+<br/>
+{% else %}
+<center>No childrens found! </center><br/>
+{% endif %}
+        <!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+</div>
+
+</section>
+</div>
+
+{% endblock content %}
+{% block javascript %}
+{% endblock %}

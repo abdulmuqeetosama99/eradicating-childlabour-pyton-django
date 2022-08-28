@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block page_head %}
+User Profile 
+{% endblock page_head %}
+
+{% block content %}
+<div class="container">
+
+<section class="section section-stats">
+
+<div class="card-panel" >
+<!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+
+<form method="POST">
+{% csrf_token %}
+<p><label for="id_username">Username:</label> <input type="text" name="username" value={{user.username}} maxlength="50" required id="id_username" readonly ></p>
+<p><label for="id_first_name">First name:</label> <input type="text" name="first_name" {% if userprofiledata.first_name is not None %}value ={{userprofiledata.first_name}}{% endif %}  maxlength="50" required id="id_first_name"></p>
+<p><label for="id_last_name">Last name:</label> <input type="text" name="last_name" {% if userprofiledata.last_name is not None %} value ={{userprofiledata.last_name}} {% endif %} maxlength="50" required id="id_last_name"></p>
+<p><label for="id_gender">Gender:</label> <select name="gender" required id="id_gender">
+  <option value="" {% if userprofiledata.gender == None %}selected{% endif %}>---------</option>
+
+  <option value="male" {% if userprofiledata.gender == "male" %}selected{% endif %} >Male</option>
+
+  <option value="female" {% if userprofiledata.gender == "female" %}selected{% endif %}>Female</option>
+
+  <option value="others"{% if userprofiledata.gender == "others" %}selected{% endif %}>Others</option>
+
+</select></p>
+<p><label for="id_age">Age:</label> <input type="number" name="age" {% if userprofiledata.age != None %} value={{userprofiledata.age}}{% endif %} required id="id_age"></p>
+<p><label for="id_address">Address:</label> <input type="text" name="address" {% if userprofiledata.address != None %} value={{userprofiledata.address}}{% endif %}  maxlength="50" required id="id_address"></p>
+<p><label for="id_city">City:</label> <input type="text" name="city"  {% if userprofiledata.city != None %} value={{userprofiledata.city}}{% endif %} maxlength="30" required id="id_city"></p>
+<p><label for="id_state">State:</label> <input type="text" name="state" {% if userprofiledata.state != None %} value={{userprofiledata.state}}{% endif %}  maxlength="30" required id="id_state"></p>
+
+<p><label for="id_contact_no">Contact no:</label> <input type="text" name="contact_no_0" size="13" {% if userprofiledata.contact_no != None %} value={{userprofiledata.contact_no}}{% endif %} required id="id_contact_no_0"></p>
+<button class="btn btn-large btn-theme margintop10" type="submit"  >Submit</button>
+</form>
+</div>
+
+</section>
+</div>
+
+{% endblock content %}

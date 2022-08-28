@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+Comments
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+
+<section class="section section-stats">
+<div class="card-panel" >
+<!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+{% for comment in comments %}
+{% if user.is_staff or comment.username == user.username  %}
+<h4>{{comment.subject|title}} <small> by {{comment.full_name|title}}, on {{comment.submit_on|date:"F d, Y"}}</small></h4>
+        <!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+<strong>Username : </strong> {{comment.full_name|title}}  
+<br/>
+<strong>Subject : </strong> {{comment.subject}}
+<br/>
+<a class="btn btn-large btn-theme margintop10" href = "{% url 'comment-delete' comment.id%}"  > Delete </a>
+<br/>
+<br/>
+        <!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+{% endif %}
+
+{% endfor %}
+</div>
+
+</section>
+</div>
+
+{% endblock content %}

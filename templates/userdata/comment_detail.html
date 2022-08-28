@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_head %}
+Comment Details
+{% endblock page_head %}
+{% block content %}
+<div class="container">
+
+<section class="section section-stats">
+<div class="card-panel" >
+{% if user.is_staff or comment.full_name == user.username  %}
+<h4>{{comment.subject|title}} <small> by {{comment.full_name|title}}, on {{comment.submit_on|date:"F d, Y"}}</small></h4>
+        <!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+<strong>Username : </strong> {{comment.full_name|title}}  
+<br/>
+<strong>Email : </strong> {{comment.email}}
+<br/>
+<strong>Subject : </strong> {{comment.subject}}
+<br/>
+<strong>Message : </strong> {{comment.message}}
+<br/>
+<a class="btn btn-large btn-theme margintop10" href = "{% url 'comment-delete' comment.id %}" > Delete </a>
+{% else %}
+<br/>
+<br/>
+No Comment found!
+{% endif %}
+<a class="btn btn-large btn-theme margintop10" href = "{% url 'home' %}" > Back </a>
+<br/>
+<br/>        <!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+
+</div>
+
+</section>
+</div>
+
+{% endblock content %}

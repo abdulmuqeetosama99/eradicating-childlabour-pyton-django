@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block page_head %}
+Children list
+{% endblock page_head %}
+
+{% block content %}
+<div class="container">
+
+<section class="section section-stats">
+<div class="card-panel" >
+<!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+
+<h2> Child Details <a class="btn btn-large btn-theme margintop10" href = "{% url 'children-create' %}" style="float:right"  >Create children </a></h2>
+        <!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+
+{% for children in childrens %}
+
+<h4>{{children.full_name|title}} <small> by {{children.username|title}}, on {{children.submit_on|date:"F d, Y"}}</small></h4>
+<strong>Full Name : </strong> {{children.full_name|title}} 
+<br/>
+<strong>Gender : </strong> {{children.gender}}
+<br/>
+<strong>Age: </strong> {{children.age}}
+<br/>
+<strong>Address : </strong> {{children.address}}, {{children.city|title}}, {{children.state|title}}
+<br/>
+<strong>Message : </strong> {{children.message|title}}
+<br/>
+{% if user.is_staff  or children.username == user.username %}
+<a class="btn btn-large btn-theme margintop10" href = "{% url 'children-update' children.id %}"  > Edit </a>
+<a class="btn btn-large btn-theme margintop10" href = "{% url 'children-delete' children.id %}"  > Delete </a>
+{% endif %}
+
+<br/>
+        <!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+{% endfor %}
+
+</div>
+
+</section>
+</div>
+
+{% endblock content %}
+{% block javascript %}
+{% endblock javascript%}

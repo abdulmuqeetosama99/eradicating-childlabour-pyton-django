@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+Volunteer Details
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+
+<section class="section section-stats">
+<div class="card-panel" >
+<!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+
+<h4> {{volunteer.username|title}}
+      {% if user.is_staff %}
+        <a class="btn btn-large btn-theme margintop10" href = "{% url 'volunteer-verify' volunteer.username %}" style="float:right" > Verify </a>
+      {% endif %}</h4>
+        <!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+<strong> Full Name : </strong> {{volunteer.first_name|title}} {{volunteer.last_name|title}}  
+<br/>
+<strong> Email : </strong> {{volunteer.email}}
+<br/>
+<strong> contact no : </strong> {{volunteer.contact_no}}
+<br/>
+<strong> Adharno  : </strong> {{volunteer.Adharno }}
+<br/>
+<strong> volunteer Id : </strong> {{volunteer.volunteer_id}}
+<br/>
+<strong> Verified : </strong> {{volunteer.verified}}
+<br/>
+{% if user.is_staff  %}
+ <a class="btn btn-large btn-theme margintop10" href = "{% url 'volunteer-delete' volunteer.username%}"  > Delete </a>
+{% endif %}
+  <a class="btn btn-large btn-theme margintop10" href = "{% url 'volunteer-update' volunteer.username%}"  > Update </a>
+ <a class="btn btn-large btn-theme margintop10" href = "{% url 'home' %}" > Back </a>
+<br/>
+<br/>
+        <!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+
+</div>
+
+</section>
+</div>
+
+{% endblock content %}

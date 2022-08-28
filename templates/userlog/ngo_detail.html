@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_head %}
+NGO Details
+{% endblock page_head %}
+{% block content %}
+<div class="container">
+
+<section class="section section-stats">
+<div class="card-panel" >
+<h4>{{ngo.name|title}} <small> Manager : {{ngo.manager_name|title}}</small>
+{% for ngomember in ngomembers %}
+{% if ngo.manager_name == ngomember.username and ngo.name == ngomember.ngo_name  %}
+<a class="btn btn-large btn-theme margintop10" href = "{% url 'ngo-doc' ngo.name %}" style="float:right" > Submit Document </a>
+{% endif %}
+{% endfor %}
+{% if user.is_staff %}
+<a class="btn btn-large btn-theme margintop10" href = "{% url 'ngo-doc' ngo.name %}" style="float:right"> Submit Document </a>
+{% endif %}
+</h4>
+        <!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+<strong>Contact : </strong> {{ngo.contact_no}}  
+<br/>
+<strong>Email : </strong> {{ngo.email}}
+<br/>
+<strong>Address : </strong> {{ngo.address|title}}, {{ngo.city|title}}, {{ngo.state|title}}
+<br/>
+<strong> Document  : </strong> {% if ngo.document %} {{ngo.document}} {% else %} Not Submited{% endif %}
+<br/>
+<strong>Verified  : </strong> {{ngo.verify}}
+<br/>
+{% for ngomember in ngomembers %}
+{% if ngo.manager_name == ngomember.username and ngo.name == ngomember.ngo_name  %}
+<a class="btn btn-large btn-theme margintop10" href = "{% url 'ngo-update' ngo.name %}" > Update </a>
+{% endif %}
+{% endfor %}
+{% if user.is_staff or ngo.manager_name == user.username  %}
+<a class="btn btn-large btn-theme margintop10" href = "{% url 'ngo-delete' ngo.name %}" > Delete </a>
+<a class="btn btn-large btn-theme margintop10" href = "{% url 'ngo-update' ngo.name %}" > Update </a>
+
+{% endif %}
+<a class="btn btn-large btn-theme margintop10" href = "{% url 'home' %}" > Back </a>
+<br/>
+<br/>        <!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+
+</div>
+
+</section>
+</div>
+
+{% endblock content %}
